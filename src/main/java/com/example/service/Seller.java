@@ -1,6 +1,12 @@
 package com.example.service;
 
-import com.example.mysql_api.Item;
+import com.example.mysql_api.ItemService;
+import com.example.mysql_api.Items;
+import com.example.mysql_api.MysqlApiApplication;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
+import org.springframework.stereotype.Component;
 
 /**
  * @author Brayden
@@ -9,8 +15,10 @@ import com.example.mysql_api.Item;
  */
 public class Seller
 {
-	public static void addItemToSale(Item item)
-	{
+	ItemService itemService = new ItemService();
 
+	public void addItemToSale(Items item)
+	{
+		itemService.listAllItem();
 	}
 }

@@ -17,6 +17,9 @@ package com.example.client; /**
 // A Java program for a Client
 
 import com.example.model.Food;
+import com.example.model.Operation;
+import com.example.model.Request;
+import com.example.mysql_api.Items;
 
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -42,12 +45,16 @@ public class Client
 			System.out.println("Connected");
 
 			// takes input from terminal
-			Food apple = new Food("apple", 10);
+//			Food apple = new Food("apple", 10);
+			Items apple = new Items();
+			apple.setItem_id(453);
+			apple.setItem_name("big apple");
+			Request<Items> addItemRequest = new Request<>(Operation.PUT_SALE, apple);
 			input  = new DataInputStream(System.in);
 
 			// sends output to the socket
 			out = new ObjectOutputStream(socket.getOutputStream());
-			out.writeObject(apple);
+			out.writeObject(addItemRequest);
 			out.flush();
 
 //			input  = new ObjectInputStream(socket.getInputStream());

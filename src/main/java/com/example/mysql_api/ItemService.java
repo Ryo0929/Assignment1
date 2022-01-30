@@ -10,6 +10,7 @@ public class ItemService {
     @Autowired
     private ItemRepository itemRepository;
     public List<Items> listAllItem() {
+        System.out.println("list");
         return itemRepository.findAll();
     }
 

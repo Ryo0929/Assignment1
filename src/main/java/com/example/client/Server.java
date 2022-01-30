@@ -16,6 +16,10 @@ package com.example.client; /**
 // A Java program for a Server
 
 import com.example.model.Food;
+import com.example.model.Operation;
+import com.example.model.Request;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.stereotype.Controller;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -30,6 +34,7 @@ public class Server
 	private ServerSocket    server   = null;
 //	private DataInputStream in       =  null;
 	private ObjectInputStream in     =  null;
+	private RequestController rc = new RequestController();
 
 	// constructor with port
 	public Server(int port)
@@ -58,10 +63,13 @@ public class Server
 			{
 				try
 				{
-					Food food = (Food) in.readObject();
+//					Food food = (Food) in.readObject();
 //					line = in.readUTF();
-					line = food.name;
-					System.out.println(line);
+					Request request = (Request) in.readObject();
+//					line = food.name;
+					Operation operation = request.operation;
+					System.out.println(operation);
+					rc.redirect(request);
 
 				}
 				catch(IOException | ClassNotFoundException i)
