@@ -1,35 +1,45 @@
 package com.example.mysql_api;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 import java.util.NoSuchElementException;
 
 @Controller
 @RequestMapping(path="/items")
 public class ItemController {
     @Autowired
-    private ItemRepository itemRepository;
+    private ItemService itemService;
 
-    @PostMapping(path="/add")
-    public @ResponseBody String addItem(@RequestParam String name,@RequestParam int category,@RequestParam String condition,@RequestParam double price,@RequestParam int quantity){
-        Item n = new Item();
-        n.setName(name);
-        n.setCategory(category);
-        n.setCondition(condition);
-        n.setPrice(price);
-        n.setQuantity(quantity);
-        itemRepository.save(n);
-        return "Saved";
+    @PostMapping("/add")
+    public void add(@RequestBody Items item) {
+        itemService.saveItem(item);
     }
-
     @GetMapping(path="/all")
-    public @ResponseBody Iterable<Item> getAllItem(){
-        return itemRepository.findAll();
+    public @ResponseBody Iterable<Items> getAllItem(){
+        return itemService.listAllItem();
+    }
+    @PutMapping("/update_price/{id}")
+    public ResponseEntity<?> update(@RequestBody Items item, @PathVariable Integer id) {
+        try {
+                Items existItem = itemService.getItem(id);
+                existItem.setSale_price(item.getSale_price());
+                itemService.saveItem(existItem);
+                return new ResponseEntity<>(HttpStatus.OK);
+            } catch (NoSuchElementException e) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    @PutMapping("/remove_item/{id}/{remove_quantity}")
+    public ResponseEntity<?> update(@PathVariable Integer id,@PathVariable Integer remove_quantity) {
+        try {
+            Items existItem = itemService.getItem(id);
+            existItem.setQuantity(existItem.getQuantity()-remove_quantity);
+            itemService.saveItem(existItem);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }
