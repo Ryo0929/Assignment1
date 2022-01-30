@@ -4,6 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Controller
@@ -16,10 +18,15 @@ public class ItemController {
     public void add(@RequestBody Items item) {
         itemService.saveItem(item);
     }
-    @GetMapping(path="/all")
-    public @ResponseBody Iterable<Items> getAllItem(){
-        return itemService.listAllItem();
+
+    //Todo:list items by "seller"
+    @GetMapping(path="/list_item_by_seller_id/{seller_id}")
+    public List<Items> getAllItem(@PathVariable Integer seller_id){
+        List<Items> res=itemService.findBySellerId(seller_id);
+        return itemService.findBySellerId(seller_id);
     }
+
+
     @PutMapping("/update_price/{id}")
     public ResponseEntity<?> update(@RequestBody Items item, @PathVariable Integer id) {
         try {

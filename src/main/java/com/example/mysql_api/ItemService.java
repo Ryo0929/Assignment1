@@ -24,4 +24,6 @@ public class ItemService {
     public void deleteItem(Integer id) {
         itemRepository.deleteById(id);
     }
+
+    public List<Items> findBySellerId(Integer id){return itemRepository.findBysellerId(id);}
 }
