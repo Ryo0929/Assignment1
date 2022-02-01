@@ -19,10 +19,16 @@ public class ItemController {
         itemService.saveItem(item);
     }
 
-    //Todo:list items by "seller"
     @GetMapping(path="/list_item_by_seller_id/{seller_id}")
     public List<Items> getAllItem(@PathVariable Integer seller_id){
         List<Items> res=itemService.findBySellerId(seller_id);
+        printItems(res);
+        return itemService.findBySellerId(seller_id);
+    }
+    @GetMapping(path="/list_item_by_keyword_and_category/{seller_id}")
+    public List<Items> getSearchItem(@PathVariable Integer seller_id){
+        List<Items> res=itemService.findBySellerId(seller_id);
+        printItems(res);
         return itemService.findBySellerId(seller_id);
     }
 
@@ -39,14 +45,22 @@ public class ItemController {
         }
     }
     @PutMapping("/remove_item/{id}/{remove_quantity}")
-    public ResponseEntity<?> update(@PathVariable Integer id,@PathVariable Integer remove_quantity) {
-        try {
-            Items existItem = itemService.getItem(id);
-            existItem.setQuantity(existItem.getQuantity()-remove_quantity);
-            itemService.saveItem(existItem);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (NoSuchElementException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public void update(@PathVariable Integer id,@PathVariable Integer remove_quantity) {
+        Items item = new Items();
+        item.setItem_id(id);
+        itemService.removeItem(item,remove_quantity);
+    }
+    private void printItems(List<Items> items){
+        for(Items item:items){
+            System.out.println("id: "+item.getItem_id());
+            System.out.println("name: "+item.getItem_name());
+            System.out.println("cate: "+item.getItem_category());
+            System.out.println("price: "+item.getSale_price());
+            System.out.println("quantity: "+item.getQuantity());
+            System.out.println("k1: "+item.getKeyword1());
+            System.out.println("k2: "+item.getKeyword2());
+            System.out.println("k3: "+item.getKeyword3());
+            System.out.println("---------------");
         }
     }
 }
