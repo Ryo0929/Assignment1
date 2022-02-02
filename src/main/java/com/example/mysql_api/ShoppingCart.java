@@ -2,10 +2,12 @@ package com.example.mysql_api;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name="shoppingcart")
-public class ShoppingCart {
+public class ShoppingCart implements Serializable
+{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

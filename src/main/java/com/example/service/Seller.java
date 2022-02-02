@@ -21,11 +21,7 @@ public class Seller
 
 	public Response addItemToSale(Items item)
 	{
-		List<Items> itemList = itemService.listAllItem();
-		for (Items i : itemList) {
-			System.out.println(i.getItem_id());
-			System.out.println(i.getItem_name());
-		}
+		itemService.saveItem(item);
 		return new Response();
 	}
 
@@ -33,5 +29,17 @@ public class Seller
 	{
 		List<Items> itemList = itemService.findBySellerId(id);
 		return new Response<List<Items>>(itemList);
+	}
+
+	public Response changeSalePrice(Items content)
+	{
+		itemService.changeSalePrice(content);
+		return new Response();
+	}
+
+	public Response removeItem(Items content)
+	{
+		itemService.removeItem(content, content.getQuantity());
+		return new Response();
 	}
 }
