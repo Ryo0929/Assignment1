@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * @author Brayden
  * @create 1/30/22 2:57 AM
@@ -22,6 +24,10 @@ public class Seller
 
 	public void addItemToSale(Items item)
 	{
-		itemService.listAllItem();
+		List<Items> itemList = itemService.listAllItem();
+		for (Items i : itemList) {
+			System.out.println(i.getItem_id());
+			System.out.println(i.getItem_name());
+		}
 	}
 }

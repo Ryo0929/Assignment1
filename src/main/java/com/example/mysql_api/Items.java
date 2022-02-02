@@ -21,7 +21,9 @@ public class Items implements Serializable
     private String keyword3;
     private String keyword4;
     private String keyword5;
-    private int seller_id;
+    // List<String> keyword
+
+    private Integer seller_id;
 
     public int getItem_id() {
         return item_id;
@@ -115,7 +117,7 @@ public class Items implements Serializable
         return seller_id;
     }
 
-    public void setSeller_id(int seller_id) {
+    public void setSeller_id(Integer seller_id) {
         this.seller_id = seller_id;
     }
 }

@@ -27,6 +27,8 @@ public class RequestController
 		switch (request.operation) {
 			case PUT_SALE:
 				seller.addItemToSale((Items) request.content);
+//			case LIST_ITEM:
+//				seller.
 //			case CHANGE_PRICE:
 //				REMOVE_ITEM, DISPLAY_ITEM
 		}

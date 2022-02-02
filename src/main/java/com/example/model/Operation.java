@@ -7,5 +7,6 @@ package com.example.model;
  */
 public enum Operation
 {
-	PUT_SALE, CHANGE_PRICE, REMOVE_ITEM, DISPLAY_ITEM
+	PUT_SALE, CHANGE_PRICE, REMOVE_ITEM, DISPLAY_ITEM,
+	LIST_ITEM
 }
