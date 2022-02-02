@@ -5,6 +5,7 @@ import java.util.List;
 
 
 @Entity
+@Table(name="items")
 public class Items implements Serializable
 {
     @Id
@@ -20,49 +21,7 @@ public class Items implements Serializable
     private String keyword3;
     private String keyword4;
     private String keyword5;
-
-    public String getKeyword1() {
-        return keyword1;
-    }
-
-    public void setKeyword1(String keyword1) {
-        this.keyword1 = keyword1;
-    }
-
-    public String getKeyword2() {
-        return keyword2;
-    }
-
-    public void setKeyword2(String keyword2) {
-        this.keyword2 = keyword2;
-    }
-
-    public String getKeyword3() {
-        return keyword3;
-    }
-
-    public void setKeyword3(String keyword3) {
-        this.keyword3 = keyword3;
-    }
-
-    public String getKeyword4() {
-        return keyword4;
-    }
-
-    public void setKeyword4(String keyword4) {
-        this.keyword4 = keyword4;
-    }
-
-    public String getKeyword5() {
-        return keyword5;
-    }
-
-    public void setKeyword5(String keyword5) {
-        this.keyword5 = keyword5;
-    }
-
-    public Items() {
-    }
+    private int seller_id;
 
     public int getItem_id() {
         return item_id;
@@ -110,5 +69,53 @@ public class Items implements Serializable
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getKeyword1() {
+        return keyword1;
+    }
+
+    public void setKeyword1(String keyword1) {
+        this.keyword1 = keyword1;
+    }
+
+    public String getKeyword2() {
+        return keyword2;
+    }
+
+    public void setKeyword2(String keyword2) {
+        this.keyword2 = keyword2;
+    }
+
+    public String getKeyword3() {
+        return keyword3;
+    }
+
+    public void setKeyword3(String keyword3) {
+        this.keyword3 = keyword3;
+    }
+
+    public String getKeyword4() {
+        return keyword4;
+    }
+
+    public void setKeyword4(String keyword4) {
+        this.keyword4 = keyword4;
+    }
+
+    public String getKeyword5() {
+        return keyword5;
+    }
+
+    public void setKeyword5(String keyword5) {
+        this.keyword5 = keyword5;
+    }
+
+    public int getSeller_id() {
+        return seller_id;
+    }
+
+    public void setSeller_id(int seller_id) {
+        this.seller_id = seller_id;
     }
 }
