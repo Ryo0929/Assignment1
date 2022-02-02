@@ -1,6 +1,7 @@
 package com.example.client;
 
 import com.example.model.Request;
+import com.example.model.Response;
 import com.example.mysql_api.Items;
 import com.example.service.Seller;
 import com.example.util.SpringUtil;
@@ -14,23 +15,24 @@ import org.springframework.stereotype.Service;
  * @Description function as router to redirect request
  */
 @Service
-public class RequestController
+public class RequestHandler
 {
 	@Autowired
 	Seller seller;
 
-	public RequestController()
+	public RequestHandler()
 	{
 	}
 
-	public void redirect(Request request) {
+	public Response redirect(Request request) {
 		switch (request.operation) {
 			case PUT_SALE:
-				seller.addItemToSale((Items) request.content);
-//			case LIST_ITEM:
-//				seller.
+				return seller.addItemToSale((Items) request.content);
+			case LIST_ITEM:
+				return seller.listItemBySeller((Integer) request.content);
 //			case CHANGE_PRICE:
 //				REMOVE_ITEM, DISPLAY_ITEM
 		}
+		return new Response("Invalid Input");
 	}
 }

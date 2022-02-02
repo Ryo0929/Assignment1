@@ -47,7 +47,7 @@ public class ItemService {
     }
 
     //Display items currently on sale put up by this seller
-    public List<Items> findBySellerId(Integer seller_id){return itemRepository.findBysellerId(seller_id);}
+    public List<Items> findBySellerId(Integer seller_id) {return itemRepository.findBysellerId(seller_id);}
     //Search items for sale: provide an item category and up to five keywords
     public List<Items> searchItemForSale(Items item){
         return itemRepository.searchByCategoryAndKeywords(item.getItem_category(),item.getKeyword1(),item.getKeyword2(),item.getKeyword3(),item.getKeyword4(),item.getKeyword5());

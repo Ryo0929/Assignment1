@@ -15,16 +15,15 @@ package com.example.client; /**
 
 // A Java program for a Server
 
-import com.example.model.Food;
 import com.example.model.Operation;
 import com.example.model.Request;
+import com.example.model.Response;
 import com.example.util.SpringUtil;
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.stereotype.Controller;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -35,12 +34,13 @@ public class Server
 	private ServerSocket    server   = null;
 //	private DataInputStream in       =  null;
 	private ObjectInputStream in     =  null;
-	private RequestController rc;
+	private ObjectOutputStream out   =  null;
+	private RequestHandler rc;
 
 	// constructor with port
 	public Server(int port)
 	{
-		rc = (RequestController) SpringUtil.getBean(RequestController.class);
+		rc = (RequestHandler) SpringUtil.getBean(RequestHandler.class);
 		// starts server and waits for a connection
 		try
 		{
@@ -55,6 +55,7 @@ public class Server
 			// takes input from the com.example.client socket
 //			in = new DataInputStream(
 //					new BufferedInputStream(socket.getInputStream()));
+			out = new ObjectOutputStream(socket.getOutputStream());
 			in = new ObjectInputStream(
 					new BufferedInputStream(socket.getInputStream()));
 
@@ -71,8 +72,8 @@ public class Server
 //					line = food.name;
 					Operation operation = request.operation;
 					System.out.println(operation);
-					rc.redirect(request);
-
+					Response res = rc.redirect(request);
+					out.writeObject(res);
 				}
 				catch(IOException | ClassNotFoundException i)
 				{
