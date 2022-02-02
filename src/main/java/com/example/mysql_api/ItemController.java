@@ -25,13 +25,13 @@ public class ItemController {
         printItems(res);
         return itemService.findBySellerId(seller_id);
     }
-    @GetMapping(path="/list_item_by_keyword_and_category/{seller_id}")
-    public List<Items> getSearchItem(@PathVariable Integer seller_id){
-        List<Items> res=itemService.findBySellerId(seller_id);
-        printItems(res);
-        return itemService.findBySellerId(seller_id);
-    }
 
+    @GetMapping(path="/list_item_by_keyword_and_category")
+    public List<Items> getSearchItemByCategoryAndKeyword(@RequestBody Items item){
+        List<Items>res=itemService.searchItems(item);
+        printItems(res);
+        return res;
+    }
 
     @PutMapping("/update_price/{id}")
     public ResponseEntity<?> update(@RequestBody Items item, @PathVariable Integer id) {
