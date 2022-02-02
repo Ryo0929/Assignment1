@@ -3,6 +3,7 @@ package com.example.client;
 import com.example.model.Request;
 import com.example.mysql_api.Items;
 import com.example.service.Seller;
+import com.example.util.SpringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
@@ -15,11 +16,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class RequestController
 {
+	@Autowired
 	Seller seller;
 
 	public RequestController()
 	{
-		seller = new Seller();
 	}
 
 	public void redirect(Request request) {

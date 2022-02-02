@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.config.BeanConfig;
 import com.example.mysql_api.ItemService;
 import com.example.mysql_api.Items;
 import com.example.mysql_api.MysqlApiApplication;
@@ -13,9 +14,11 @@ import org.springframework.stereotype.Component;
  * @create 1/30/22 2:57 AM
  * @Description
  */
+@Component
 public class Seller
 {
-	ItemService itemService = new ItemService();
+	@Autowired
+	ItemService itemService;
 
 	public void addItemToSale(Items item)
 	{

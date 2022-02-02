@@ -18,6 +18,7 @@ package com.example.client; /**
 import com.example.model.Food;
 import com.example.model.Operation;
 import com.example.model.Request;
+import com.example.util.SpringUtil;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.stereotype.Controller;
 
@@ -34,11 +35,12 @@ public class Server
 	private ServerSocket    server   = null;
 //	private DataInputStream in       =  null;
 	private ObjectInputStream in     =  null;
-	private RequestController rc = new RequestController();
+	private RequestController rc;
 
 	// constructor with port
 	public Server(int port)
 	{
+		rc = (RequestController) SpringUtil.getBean(RequestController.class);
 		// starts server and waits for a connection
 		try
 		{
