@@ -25,6 +25,7 @@ import com.example.mysql_api.ShoppingCart;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class Client
 {
@@ -33,6 +34,7 @@ public class Client
 	private Socket socket2           = null;
 	private ObjectInputStream input = null;
 	private ObjectOutputStream  out  = null;
+	private Scanner scanner;
 	private ResponseHandler handler = null;
 
 	// constructor to put ip address and port
@@ -43,6 +45,7 @@ public class Client
 		try
 		{
 			socket = new Socket(address, port);
+			scanner = new Scanner(System.in);
 			System.out.println("Connected");
 
 			input  = new ObjectInputStream(new BufferedInputStream(socket.getInputStream()));
@@ -55,14 +58,17 @@ public class Client
 			System.out.println(u);
 		}
 
-		String line = "";
+		int line = 0;
 		Response res = new Response("");
 
 		// keep reading until "Over" is input
-		while (!line.equals("Over"))
+		while (line != -1)
 		{
 			try
 			{
+				line = scanner.nextInt();
+				String message;
+
 				// Encapsulate request content
 				Items apple = new Items();
 				apple.setItem_id(3);
@@ -76,6 +82,48 @@ public class Client
 				ShoppingCart cartItem = new ShoppingCart();
 				cartItem.setItem_id(5);
 				cartItem.setQuantity(1);
+
+				Request request = new Request<>(Operation.LIST_ITEM, 1);
+
+				long startTime = System.currentTimeMillis();
+				switch (line) {
+					case 1 :
+						// 1. addItem request
+						request = new Request<>(Operation.PUT_SALE, apple);
+						break;
+					case 2 :
+						// 2. Change sale price
+						request = new Request<>(Operation.CHANGE_PRICE, apple);
+						break;
+					case 3 :
+						// 3. Remove Item
+						request = new Request<>(Operation.REMOVE_ITEM, apple);
+						break;
+					case 4 :
+						// 4. Display item by seller request
+						request = new Request<>(Operation.LIST_ITEM, 1);
+						break;
+					case 5 :
+						// 5. Search Item
+						request = new Request<>(Operation.SEARCH_ITEM, apple);
+						break;
+					case 6 :
+						// 6. ADD Item
+						request =new Request<>(Operation.CART_ADD_ITEM, cartItem);
+						break;
+					case 7 :
+						// 7. Remove Item from shopping cart
+						request = new Request<>(Operation.CART_REMOVE_ITEM, cartItem);
+						break;
+					case 8 :
+						// 8. Clear shopping cart
+						request = new Request<>(Operation.CART_CLEAR, 4);
+						break;
+					case 9 :
+						// 9. Display shopping cart
+						request = new Request<>(Operation.CART_DISPLAY, 2);
+						break;
+				}
 
 				// Request sending
 				// 1. addItem request
@@ -95,15 +143,17 @@ public class Client
 				// 8. Clear shopping cart
 //				Request<Integer> request = new Request<>(Operation.CART_CLEAR, 4);
 				// 9. Display shopping cart
-				Request<Integer> request = new Request<>(Operation.CART_DISPLAY, 2);
+//				Request<Integer> request = new Request<>(Operation.CART_DISPLAY, 2);
 				out.writeObject(request);
 				out.flush();
 
 				// Extract response
 				res = (Response) input.readObject();
 				ResponseHandler.display(request, res);
-				line = res.message;
-				System.out.println(line);
+				long endTime = System.currentTimeMillis();
+				System.out.println("RTT: "+ (endTime - startTime) + "ms");
+				message = res.message;
+				System.out.println(message);
 			}
 			catch(IOException | ClassNotFoundException i)
 			{
