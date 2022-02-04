@@ -18,7 +18,16 @@ public class ShoppingCartService {
 
     //Add item to the shopping cart: provide item id and quantity
     public void saveItem(ShoppingCart shoppingCart) {
-        shoppingCartRepository.save(shoppingCart);
+        List<ShoppingCart> carts=shoppingCartRepository.getByBuyerIdAndItemId(shoppingCart.getItem_id(),shoppingCart.getBuyer_id());
+        int quantity=shoppingCart.getQuantity();
+        if (carts.isEmpty()){
+            shoppingCartRepository.save(shoppingCart);
+        }else{
+            ShoppingCart existShoppingCart=carts.get(0);
+            existShoppingCart.setQuantity(existShoppingCart.getQuantity()+quantity);
+            shoppingCartRepository.save(existShoppingCart);
+        }
+
     }
     //Remove item from the shopping cart: provide item id and quantity
     public void removeItemFromShoppingCart(int item_id,int quantity,int buyer_id){
@@ -40,7 +49,7 @@ public class ShoppingCartService {
         return shoppingCartRepository.getByBuyerId(buyerId);
     }
 
-    public ShoppingCart getItem(Integer id) {
+    public ShoppingCart getShoppingCart(Integer id) {
         return shoppingCartRepository.findById(id).get();
     }
 
