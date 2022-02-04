@@ -17,6 +17,34 @@ WeiTung Liao, Bofan Zheng
   + **Response Handler**(worked): The handler can receive and process server's response, depend on the type of response, the handler will write response message or the items (for the list / display request ) to output console.
   + **Text Output** (worked): The processed response will be output to the program console, we may change it to graph interface in the future
   + **Request Handler** (worked): The handler mainly function as a router here, receives socket input, and then redirect request to corresponding data api
+  
++ ### Data API (works)
+  + **Put an item for sale**: provide all item characteristics and quantity 
+  + **Change the sale price of an item**: provide item id and new sale price 
+  + **Remove an item from sale**: provide item id and quantity 
+  + **Display items currently on sale put up by this seller**: provide seller id
+  + **Search items for sale**: provide an item category and up to five keywords 
+  + **Add item to the shopping cart**: provide item id and quantity 
+  + **Remove item from the shopping cart**: provide item id and quantity 
+  + **Clear the shopping cart**: provide buyer id
+  + **Display shopping cart**: provide buyer id
+
++ ### Database tables
+current tables
+
+![](https://github.com/Ryo0929/Assignment1/blob/release/assignment1/tables.png)
+
+items
+
+![](https://github.com/Ryo0929/Assignment1/blob/release/assignment1/table_items.png)
+
+sellers
+
+![](https://github.com/Ryo0929/Assignment1/blob/release/assignment1/table_sellers.png)
+
+shopping cart
+
+![](https://github.com/Ryo0929/Assignment1/blob/release/assignment1/tables_shoppingcart.png)
 
 + ### RTT Test ###
 
