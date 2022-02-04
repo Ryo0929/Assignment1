@@ -22,7 +22,7 @@ WeiTung Liao, Bofan Zheng
 
   The Test result for client and server process depolyed in local machine, database deployed in google cloud platform
 
-  + **addItem request** 294ms
+  + **AddItem request** 294ms
   + **Change sale price** 290ms
   + **Remove Item** 311ms
   + **Display item by seller request** 304ms
