@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package com.example.mysql_api;
+
+option java_multiple_files = true;
+option java_package = "com.example.mysql_api.mysql_api";
+
+
+service db_services{
+  rpc saveItem(item) returns (Empty) {}
+}
+message item{
+  int32 item_id=1;
+  string item_name=2;
+  int32 item_category=3;
+  string item_condition=4;
+  double sale_price=5;
+  int32 quantity=6;
+  string keyword1=7;
+  string keyword2=8;
+  string keyword3=9;
+  string keyword4=10;
+  string keyword5=11;
+  int32 seller_id=12;
+}
+message Empty{}
+
+

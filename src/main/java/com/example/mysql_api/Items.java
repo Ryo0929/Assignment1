@@ -21,7 +21,6 @@ public class Items implements Serializable
     private String keyword3;
     private String keyword4;
     private String keyword5;
-    // List<String> keyword
 
     private Integer seller_id;
 
