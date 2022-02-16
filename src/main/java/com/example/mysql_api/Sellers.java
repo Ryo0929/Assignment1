@@ -11,8 +11,9 @@ public class Sellers {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int seller_id;
     private String seller_name;
-    private String seller_feedback;
+    private int seller_feedback;
     private int number_of_items_sold;
+    private String password;
 
     public Sellers(){}
 
@@ -32,11 +33,11 @@ public class Sellers {
         this.seller_name = seller_name;
     }
 
-    public String getSeller_feedback() {
+    public int getSeller_feedback() {
         return seller_feedback;
     }
 
-    public void setSeller_feedback(String seller_feedback) {
+    public void setSeller_feedback(int seller_feedback) {
         this.seller_feedback = seller_feedback;
     }
 
@@ -46,5 +47,12 @@ public class Sellers {
 
     public void setNumber_of_items_sold(int number_of_items_sold) {
         this.number_of_items_sold = number_of_items_sold;
+    }
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

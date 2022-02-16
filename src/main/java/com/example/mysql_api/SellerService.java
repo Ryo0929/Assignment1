@@ -25,4 +25,6 @@ public class SellerService {
     public void deleteSeller(Integer id) {
         sellerRepository.deleteById(id);
     }
+
+    public int getSellerRatingById(Integer id){return getSeller(id).getSeller_id();}
 }

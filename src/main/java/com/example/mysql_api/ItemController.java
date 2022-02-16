@@ -20,10 +20,10 @@ public class ItemController {
     }
 
     @GetMapping(path="/list_item_by_seller_id/{seller_id}")
-    public List<Items> getAllItem(@PathVariable Integer seller_id){
+    public ResponseEntity<List<Items>> getAllItem(@PathVariable Integer seller_id){
         List<Items> res=itemService.findBySellerId(seller_id);
         printItems(res);
-        return itemService.findBySellerId(seller_id);
+        return ResponseEntity.ok(itemService.findBySellerId(seller_id));
     }
 
     @GetMapping(path="/list_item_by_keyword_and_category")

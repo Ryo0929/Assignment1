@@ -9,12 +9,12 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.example"})
+//@ComponentScan(basePackages = {"com.example"})
 public class MysqlApiApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MysqlApiApplication.class, args);
-		Server server = new Server(5000);
+		//Server server = new Server(8000);
 	}
 
 }
