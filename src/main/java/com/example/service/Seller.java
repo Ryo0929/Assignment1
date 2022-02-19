@@ -1,8 +1,8 @@
 package com.example.service;
 
 import com.example.model.Response;
-import com.example.mysql_api.ItemService;
-import com.example.mysql_api.Items;
+import com.example.mysql_api.item.ItemService;
+import com.example.mysql_api.item.Items;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -37,9 +37,11 @@ public class Seller
 		return new Response();
 	}
 
+	/*
 	public Response removeItem(Items content)
 	{
 		itemService.removeItem(content, content.getQuantity());
 		return new Response();
 	}
+	*/
 }

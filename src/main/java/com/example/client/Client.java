@@ -16,12 +16,11 @@ package com.example.client; /**
 
 // A Java program for a Client
 
-import com.example.model.Food;
 import com.example.model.Operation;
 import com.example.model.Request;
 import com.example.model.Response;
-import com.example.mysql_api.Items;
-import com.example.mysql_api.ShoppingCart;
+import com.example.mysql_api.item.Items;
+import com.example.mysql_api.shoppingCart.ShoppingCart;
 
 import java.io.*;
 import java.net.Socket;
@@ -72,7 +71,7 @@ public class Client
 				// Encapsulate request content
 				Items apple = new Items();
 				apple.setItem_id(3);
-				apple.setSale_price(10);
+				apple.setSale_price(10.0);
 				apple.setQuantity(2);
 				apple.setItem_category(2);
 				apple.setKeyword2("b");

@@ -1,4 +1,5 @@
-package com.example.mysql_api;
+package com.example.mysql_api.item;
+import com.example.mysql_api.GrpcService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,10 +14,13 @@ import java.util.NoSuchElementException;
 public class ItemController {
     @Autowired
     private ItemService itemService;
+    @Autowired
+    private GrpcService grpcService;
 
     @PostMapping("/add")
-    public void add(@RequestBody Items item) {
-        itemService.saveItem(item);
+    public ResponseEntity add(@RequestBody Items item) {
+        grpcService.saveItem(item);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping(path="/list_item_by_seller_id/{seller_id}")
@@ -27,10 +31,10 @@ public class ItemController {
     }
 
     @GetMapping(path="/list_item_by_keyword_and_category")
-    public List<Items> getSearchItemByCategoryAndKeyword(@RequestBody Items item){
+    public ResponseEntity<List<Items>> getSearchItemByCategoryAndKeyword(@RequestBody Items item){
         List<Items>res=itemService.searchItems(item);
         printItems(res);
-        return res;
+        return ResponseEntity.ok(res);
     }
 
     @PutMapping("/update_price/{id}")
@@ -46,9 +50,7 @@ public class ItemController {
     }
     @PutMapping("/remove_item/{id}/{remove_quantity}")
     public void update(@PathVariable Integer id,@PathVariable Integer remove_quantity) {
-        Items item = new Items();
-        item.setItem_id(id);
-        itemService.removeItem(item,remove_quantity);
+        itemService.removeItem(id,remove_quantity);
     }
     private void printItems(List<Items> items){
         for(Items item:items){

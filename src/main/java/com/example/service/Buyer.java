@@ -1,10 +1,10 @@
 package com.example.service;
 
 import com.example.model.Response;
-import com.example.mysql_api.ItemService;
-import com.example.mysql_api.Items;
-import com.example.mysql_api.ShoppingCart;
-import com.example.mysql_api.ShoppingCartService;
+import com.example.mysql_api.item.ItemService;
+import com.example.mysql_api.item.Items;
+import com.example.mysql_api.shoppingCart.ShoppingCart;
+import com.example.mysql_api.shoppingCart.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

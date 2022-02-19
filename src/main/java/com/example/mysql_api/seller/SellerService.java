@@ -1,4 +1,4 @@
-package com.example.mysql_api;
+package com.example.mysql_api.seller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,5 +26,5 @@ public class SellerService {
         sellerRepository.deleteById(id);
     }
 
-    public int getSellerRatingById(Integer id){return getSeller(id).getSeller_id();}
+    public int getSellerRatingById(Integer id){return getSeller(id).getSeller_feedback();}
 }

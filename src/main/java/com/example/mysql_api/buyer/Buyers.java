@@ -1,4 +1,4 @@
-package com.example.mysql_api;
+package com.example.mysql_api.buyer;
 
 import javax.persistence.*;
 

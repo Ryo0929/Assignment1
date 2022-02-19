@@ -1,4 +1,4 @@
-package com.example.mysql_api;
+package com.example.mysql_api.item;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -10,26 +10,32 @@ public class Items implements Serializable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int item_id;
+    private Integer item_id;
     private String item_name;
-    private int item_category;
+    private Integer item_category;
     private String item_condition;
-    private double sale_price;
-    private int quantity;
+    private Double sale_price;
+    private Integer quantity;
     private String keyword1;
     private String keyword2;
     private String keyword3;
     private String keyword4;
     private String keyword5;
-    // List<String> keyword
-
     private Integer seller_id;
 
-    public int getItem_id() {
+    public Integer getSeller_id() {
+        return seller_id;
+    }
+
+    public void setSeller_id(int saller_id) {
+        this.seller_id = saller_id;
+    }
+
+    public Integer getItem_id() {
         return item_id;
     }
 
-    public void setItem_id(int item_id) {
+    public void setItem_id(Integer item_id) {
         this.item_id = item_id;
     }
 
@@ -41,11 +47,11 @@ public class Items implements Serializable
         this.item_name = item_name;
     }
 
-    public int getItem_category() {
+    public Integer getItem_category() {
         return item_category;
     }
 
-    public void setItem_category(int item_category) {
+    public void setItem_category(Integer item_category) {
         this.item_category = item_category;
     }
 
@@ -57,19 +63,19 @@ public class Items implements Serializable
         this.item_condition = item_condition;
     }
 
-    public double getSale_price() {
+    public Double getSale_price() {
         return sale_price;
     }
 
-    public void setSale_price(double sale_price) {
+    public void setSale_price(Double sale_price) {
         this.sale_price = sale_price;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
@@ -111,13 +117,5 @@ public class Items implements Serializable
 
     public void setKeyword5(String keyword5) {
         this.keyword5 = keyword5;
-    }
-
-    public int getSeller_id() {
-        return seller_id;
-    }
-
-    public void setSeller_id(Integer seller_id) {
-        this.seller_id = seller_id;
     }
 }

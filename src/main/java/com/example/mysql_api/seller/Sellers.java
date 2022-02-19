@@ -1,4 +1,4 @@
-package com.example.mysql_api;
+package com.example.mysql_api.seller;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

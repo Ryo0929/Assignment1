@@ -1,4 +1,4 @@
-package com.example.mysql_api;
+package com.example.mysql_api.shoppingCart;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

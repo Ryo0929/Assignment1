@@ -1,9 +1,8 @@
-package com.example.mysql_api;
+package com.example.mysql_api.seller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -12,8 +11,9 @@ public class SellerController {
     @Autowired
     private SellerService sellerService;
     @PostMapping("/add")
-    public void add(@RequestBody Sellers sellers){
+    public ResponseEntity add(@RequestBody Sellers sellers){
         sellerService.saveSeller(sellers);
+        return ResponseEntity.ok().build();
     }
     @GetMapping("/get_rating/{seller_id}")
     public ResponseEntity<Integer> add(@PathVariable int seller_id){

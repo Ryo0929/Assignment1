@@ -1,6 +1,6 @@
 package com.example.config;
 
-import com.example.mysql_api.ItemService;
+import com.example.mysql_api.item.ItemService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;

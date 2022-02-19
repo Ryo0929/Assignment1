@@ -1,6 +1,5 @@
-package com.example.mysql_api;
+package com.example.mysql_api.item;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -25,8 +24,7 @@ public class ItemService {
         saveItem(existItem);
     }
     //Remove an item from sale: provide item id and quantity
-    public void removeItem(Items item,int remove_quantity){
-        int item_id=item.getItem_id();
+    public void removeItem(Integer item_id,int remove_quantity){
         Items existItem=getItem(item_id);
 
         //Didn't deal with the case that remove quantity is larger than current quantity. I just deleted it if so.

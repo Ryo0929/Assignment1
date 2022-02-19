@@ -1,4 +1,4 @@
-package com.example.mysql_api;
+package com.example.mysql_api.shoppingCart;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
