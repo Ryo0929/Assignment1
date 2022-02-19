@@ -1,6 +1,6 @@
 package com.example.util;
 
-import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,7 +18,7 @@ public class ComponentUnitTest {
 
 	@Autowired
 	private ApplicationContext applicationContext;
-
+/*
 	@Test
 	public void givenInScopeComponents_whenSearchingInApplicationContext_thenFindThem() {
 		Object a = (applicationContext.getBean(SpringUtil.class));
@@ -26,4 +26,5 @@ public class ComponentUnitTest {
 //		Object c = (applicationContext.getBean(.class));
 		System.out.println(1);
 	}
+*/
 }
