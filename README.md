@@ -28,6 +28,8 @@ WeiTung Liao, Bofan Zheng
   + **Remove item from the shopping cart**: provide item id and quantity 
   + **Clear the shopping cart**: provide buyer id
   + **Display shopping cart**: provide buyer id
+
+
   Assignment 2
   + **Create an account:(sellers)**: provide seller_name, seller_feedback, number_of_items_sold, password
   + **Get seller rating:**: provide seller_id
