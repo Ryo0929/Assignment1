@@ -1,4 +1,5 @@
 package com.example.mysql_api.item;
+import com.example.model.Response;
 import com.example.mysql_api.GrpcService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,16 +19,16 @@ public class ItemController {
     private GrpcService grpcService;
 
     @PostMapping("/add")
-    public ResponseEntity add(@RequestBody Items item) {
+    public Response add(@RequestBody Items item) {
         grpcService.saveItem(item);
-        return ResponseEntity.ok().build();
+        return new Response();
     }
 
     @GetMapping(path="/list_item_by_seller_id/{seller_id}")
-    public ResponseEntity<List<Items>> getAllItem(@PathVariable Integer seller_id){
+    public Response<List<Items>> getAllItem(@PathVariable Integer seller_id){
         List<Items> res=itemService.findBySellerId(seller_id);
         printItems(res);
-        return ResponseEntity.ok(itemService.findBySellerId(seller_id));
+        return new Response(res);
     }
 
     @GetMapping(path="/list_item_by_keyword_and_category")
