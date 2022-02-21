@@ -6,7 +6,7 @@ WeiTung Liao, Bofan Zheng
 
 ### Description
 
-+ ### System Desgin
++ ### System Design
 
   The architecture diagram below shows major components in our system
 
@@ -60,7 +60,9 @@ shopping cart
   + **Clear shopping cart** 305ms
   + **Display shopping cart** 310ms
 
-  
+### System Design Part II
+
+![](https://github.com/Ryo0929/Assignment1/raw/client/System_Architecture2.png)
 
 
 
