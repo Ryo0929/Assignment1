@@ -51,20 +51,33 @@ shopping cart
   The Test result for client and server process depolyed in local machine, database deployed in google cloud platform
 
   + **addItem request** 294ms
+  
   + **Change sale price** 290ms
+  
   + **Remove Item** 311ms
+  
   + **Display item by seller request** 304ms
+  
   + **Search Item** 272ms
+
   + **ADD Item** 262ms
+  
   + **Remove Item from shopping cart** 281ms
+  
   + **Clear shopping cart** 305ms
+  
   + **Display shopping cart** 310ms
+  
+    
 
 ### System Design Part II
 
-![](https://github.com/Ryo0929/Assignment1/raw/client/System_Architecture2.png)
+![](https://raw.githubusercontent.com/Ryo0929/Assignment1/release/assignment2/System_Architecture2.png)
 
++ ### SOAP client ### 
 
+  + Perform RPC call to SOAP server 
 
++ ### SOAP Server ###
 
-
+  + Reply xml response to indicate transaction status
