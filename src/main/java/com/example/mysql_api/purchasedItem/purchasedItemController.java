@@ -23,10 +23,6 @@ public class purchasedItemController {
         itemService.removeItem(transaction.getItem_id(),1);//can only buy one item each time
         return ResponseEntity.ok().build();
     }
-    @GetMapping(path="/list_item_by_buyerer_id/{buyer_id}")
-    public ResponseEntity<List<purchasedItem>> getAllPurchasedItem(@PathVariable Integer buyer_id){
-        List<purchasedItem> res=purchasedItemService.listByBuyerId(buyer_id);
-        return ResponseEntity.ok(res);
-    }
+
 
 }
