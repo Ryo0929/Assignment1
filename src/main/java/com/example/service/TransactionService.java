@@ -31,8 +31,8 @@ public class TransactionService
             Also change the contents of the method createSoapEnvelope() in this class. It constructs
              the inner part of the SOAP envelope that is actually sent.
          */
-		String soapEndpointUrl = "http://localhost:5051/transaction";
-		String soapAction = "http://localhost:5051/transaction";
+		String soapEndpointUrl = "http://34.106.36.207:5051/transaction";
+		String soapAction = "http://34.106.36.207:5051/transaction";
 
 		callSoapWebService(soapEndpointUrl, soapAction);
 	}
@@ -118,8 +118,8 @@ public class TransactionService
 
 	public Response credit()
 	{
-		String soapEndpointUrl = "http://localhost:5051/transaction";
-		String soapAction = "http://localhost:5051/transaction";
+		String soapEndpointUrl = "http://34.106.36.207:5051/transaction";
+		String soapAction = "http://34.106.36.207:5051/transaction";
 
 		return callSoapWebService(soapEndpointUrl, soapAction);
 	}
