@@ -7,6 +7,29 @@ option java_package = "com.example.mysqljdbc";
 
 service db_services{
   rpc saveItem(item) returns (Empty) {}
+  rpc updateItem(item) returns (Empty) {}
+  rpc deleteItem(item) returns (Empty) {}
+  rpc getItem(item) returns (item) {}
+
+  rpc saveBuyer(buyer) returns (Empty) {}
+  rpc updateBuyer(buyer) returns (Empty) {}
+  rpc deleteBuyer(buyer) returns (Empty) {}
+  rpc getBuyer(buyer) returns (buyer) {}
+
+  rpc saveSeller(seller) returns (Empty) {}
+  rpc updateSeller(seller) returns (Empty) {}
+  rpc deleteSeller(seller) returns (Empty) {}
+  rpc getSeller(seller) returns (seller) {}
+
+  rpc savePurchaseditem(purchaseditem) returns (Empty) {}
+  rpc updatePurchaseditem(purchaseditem) returns (Empty) {}
+  rpc deletePurchaseditem(purchaseditem) returns (Empty) {}
+  rpc getPurchaseditem(purchaseditem) returns (purchaseditem) {}
+
+  rpc saveShoppingcart(shoppingcart) returns (Empty) {}
+  rpc updateShoppingcart(shoppingcart) returns (Empty) {}
+  rpc deleteShoppingcart(shoppingcart) returns (Empty) {}
+  rpc getShoppingcart(shoppingcart) returns (shoppingcart) {}
 }
 message item{
   int32 item_id=1;
@@ -22,4 +45,30 @@ message item{
   string keyword5=11;
   int32 seller_id=12;
 }
+message buyer{
+  int32 buyer_id=1;
+  string buyer_name=2;
+  int32 number_of_item_purchased=3;
+  string buyer_password=4;
+}
+message purchaseditem{
+  int32 id=1;
+  int32 buyer_id=2;
+  int32 item_id=3;
+  int32 feedback=4;
+}
+message seller{
+  int32 seller_id=1;
+  string seller_name=2;
+  int32 seller_feedback=3;
+  int32 number_of_items_sold=4;
+  string password=5;
+}
+message shoppingcart{
+  int32 id=1;
+  int32 item_id=2;
+  int32 buyer_id=3;
+  int32 quantity=4;
+}
+
 message Empty{}
