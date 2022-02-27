@@ -19,16 +19,16 @@ public class ItemController {
     private GrpcService grpcService;
 
     @PostMapping("/add")
-    public Response add(@RequestBody Items item) {
+    public ResponseEntity add(@RequestBody Items item) {
         grpcService.saveItem(item);
-        return new Response();
+        return new ResponseEntity<>("success", HttpStatus.OK);
     }
 
     @GetMapping(path="/list_item_by_seller_id/{seller_id}")
-    public Response<List<Items>> getAllItem(@PathVariable Integer seller_id){
+    public ResponseEntity<List<Items>> getAllItem(@PathVariable Integer seller_id){
         List<Items> res=itemService.findBySellerId(seller_id);
         printItems(res);
-        return new Response(res);
+        return ResponseEntity.ok(res);
     }
 
     @GetMapping(path="/list_item_by_keyword_and_category")
@@ -44,14 +44,15 @@ public class ItemController {
                 Items existItem = itemService.getItem(id);
                 existItem.setSale_price(item.getSale_price());
                 itemService.saveItem(existItem);
-                return new ResponseEntity<>(HttpStatus.OK);
+                return new ResponseEntity<>("success", HttpStatus.OK);
             } catch (NoSuchElementException e) {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
     @PutMapping("/remove_item/{id}/{remove_quantity}")
-    public void update(@PathVariable Integer id,@PathVariable Integer remove_quantity) {
+    public ResponseEntity update(@PathVariable Integer id,@PathVariable Integer remove_quantity) {
         itemService.removeItem(id,remove_quantity);
+        return new ResponseEntity<>("success", HttpStatus.OK);
     }
     private void printItems(List<Items> items){
         for(Items item:items){
