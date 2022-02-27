@@ -42,6 +42,6 @@ public class GrpcService {
         }
 
         stub.saveItem(itemBuilder.build());
-        channel.shutdown();
+        //channel.shutdown();
     }
 }
