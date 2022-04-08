@@ -92,7 +92,7 @@ public class UdpUnicastClient implements Runnable {
                 System.out.print("] IP: " + received.getIp() + ", ");
 
                 System.out.println("Content: " + outputPacket.content + ".");
-//                sendServer.sendMessage();
+                sendServer.broadcast();
             }
         } catch (SocketException e) {
             e.printStackTrace();
