@@ -115,9 +115,9 @@ shopping cart
   
   + **Display item by seller request**  ms
 
-	+ **Create an account**  ms
+  + **Create an account**  ms
   
-	+ **ADD Item to shopping cart**  ms
+  + **ADD Item to shopping cart**  ms
   
   + **Remove Item from shopping cart**  ms
 
@@ -140,9 +140,9 @@ shopping cart
   
   + **Display item by seller request**  ms
 
-	+ **Create an account**  ms
+  + **Create an account**  ms
   
-	+ **ADD Item to shopping cart**  ms
+  + **ADD Item to shopping cart**  ms
   
   + **Remove Item from shopping cart**  ms
 
@@ -165,9 +165,9 @@ shopping cart
   
   + **Display item by seller request**  ms
 
-	+ **Create an account**  ms
+  + **Create an account**  ms
   
-	+ **ADD Item to shopping cart**  ms
+  + **ADD Item to shopping cart**  ms
   
   + **Remove Item from shopping cart**  ms
 
@@ -190,9 +190,9 @@ shopping cart
   
   + **Display item by seller request**  ms
 
-	+ **Create an account**  ms
+  + **Create an account**  ms
   
-	+ **ADD Item to shopping cart**  ms
+  + **ADD Item to shopping cart**  ms
   
   + **Remove Item from shopping cart**  ms
 
