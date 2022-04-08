@@ -43,19 +43,7 @@ public class UdpUnicastClient implements Runnable {
 
             byte[] buffer = new byte[65507];
 
-            // Set a timeout of 3000 ms for the client.
-//            clientSocket.setSoTimeout(3000);
             while (true) {
-//                final ByteArrayOutputStream baos = new ByteArrayOutputStream(6400);
-//                final ObjectOutputStream oos = new ObjectOutputStream(baos);
-//                oos.writeObject(o);
-//                final byte[] data = baos.toByteArray();
-//
-//                final DatagramPacket packet = new DatagramPacket(data, data.length);
-//                ObjectInputStream is = new ObjectInputStream(new BufferedInputStream())
-//                SentPacket received =
-// Send the packet
-
 
                 DatagramPacket datagramPacket = new DatagramPacket(buffer, 0, buffer.length);
 
@@ -76,13 +64,6 @@ public class UdpUnicastClient implements Runnable {
                 is.close();
 
 
-
-
-//                final ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(datas));
-//                final ObjectInputStream ois = new ObjectInputStream(datas);
-
-
-//                String receivedMessage = new String(datagramPacket.getData());
                 outputPacket.setContent(received.getMessage());
 
                 System.out.print("Node[" + outputPacket.getNodeNum());
