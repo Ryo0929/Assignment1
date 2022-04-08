@@ -101,7 +101,8 @@ shopping cart
   + Atomic controller is responsible for message sending, deliver status judge
 
 + ### Raft Protocol
-
+  +  We migrate part of current database to RedisRaft cluster. All data relate to product will be store at a strongly-consistent cluster of redis server  using Raft consensus. 
+  +  reference : https://github.com/RedisLabs/redisraft 
 
 
 ### RTT Test ###
