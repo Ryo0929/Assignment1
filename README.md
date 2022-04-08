@@ -1,4 +1,4 @@
-# Assignment One
+# Distributed E-Commerce System
 
 ### Team Member
 
@@ -93,5 +93,115 @@ shopping cart
   
     
 
-### System Design Part III 
+### System Design Part III (change in Assignment 4)
 ![](https://raw.githubusercontent.com/Ryo0929/Assignment1/release/assignment4/System_Architecture3.png)
+
++ ### Rotating Sequencer Atomic Broadcast Protocol
+
+  + Atomic controller is responsible for message sending, deliver status judge
+
++ ### Raft Protocol
+
+
+
+### RTT Test ###
+
++ **Average response time for each client function when all replicas run normally (no failures).**
+  + **Put an item for sale**  ms 	
+  
+	+ **Change the sale price of an item**  ms
+  
+  + **Remove Item**  ms
+  
+  + **Display item by seller request**  ms
+
+	+ **Create an account**  ms
+  
+	+ **ADD Item to shopping cart**  ms
+  
+  + **Remove Item from shopping cart**  ms
+
+  + **Display shopping cart**  ms
+  
+  + **Clear shopping cart**  ms
+  	
+  + **Search Item for sale**  ms
+  
+  + **Get seller rating**  ms
+
+  + **Get buyer history**  ms
+  
++ **Average response time for each client function when one server-side sellers interface replica and one serverside buyers interface to which some of the clients are connected fail.**
+	+ **Put an item for sale**  ms 	
+  
+	+ **Change the sale price of an item**  ms
+  
+  + **Remove Item**  ms
+  
+  + **Display item by seller request**  ms
+
+	+ **Create an account**  ms
+  
+	+ **ADD Item to shopping cart**  ms
+  
+  + **Remove Item from shopping cart**  ms
+
+  + **Display shopping cart**  ms
+  
+  + **Clear shopping cart**  ms
+  	
+  + **Search Item for sale**  ms
+  
+  + **Get seller rating**  ms
+
+  + **Get buyer history**  ms
+  
++ **Average response time for each client function when one product database replica (not the leader) fails.**
+	+ **Put an item for sale**  ms 	
+  
+	+ **Change the sale price of an item**  ms
+  
+  + **Remove Item**  ms
+  
+  + **Display item by seller request**  ms
+
+	+ **Create an account**  ms
+  
+	+ **ADD Item to shopping cart**  ms
+  
+  + **Remove Item from shopping cart**  ms
+
+  + **Display shopping cart**  ms
+  
+  + **Clear shopping cart**  ms
+  	
+  + **Search Item for sale**  ms
+  
+  + **Get seller rating**  ms
+
+  + **Get buyer history**  ms
+  
++ **Average response time for each client function when the product database replica acting as leader fails.**
+	+ **Put an item for sale**  ms 	
+  
+	+ **Change the sale price of an item**  ms
+  
+  + **Remove Item**  ms
+  
+  + **Display item by seller request**  ms
+
+	+ **Create an account**  ms
+  
+	+ **ADD Item to shopping cart**  ms
+  
+  + **Remove Item from shopping cart**  ms
+
+  + **Display shopping cart**  ms
+  
+  + **Clear shopping cart**  ms
+  	
+  + **Search Item for sale**  ms
+  
+  + **Get seller rating**  ms
+
+  + **Get buyer history**  ms
