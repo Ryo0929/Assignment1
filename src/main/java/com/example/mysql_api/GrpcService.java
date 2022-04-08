@@ -13,8 +13,8 @@ import javax.transaction.Transactional;
 @Service
 @Transactional
 public class GrpcService {
-    //ManagedChannel channel = ManagedChannelBuilder.forAddress("34.106.36.207",8050).usePlaintext().build();
-    ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost",8050).usePlaintext().build();
+    ManagedChannel channel = ManagedChannelBuilder.forAddress("34.106.36.207",8050).usePlaintext().build();
+    //ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost",8050).usePlaintext().build();
     db_servicesGrpc.db_servicesBlockingStub stub=db_servicesGrpc.newBlockingStub(channel);
 
     public void saveItem(Items inputItem){
