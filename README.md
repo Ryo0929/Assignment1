@@ -29,6 +29,15 @@ WeiTung Liao, Bofan Zheng
   + **Clear the shopping cart**: provide buyer id
   + **Display shopping cart**: provide buyer id
 
+
+  Assignment 2
+  + **Create an account:(sellers)**: provide seller_name, seller_feedback, number_of_items_sold, password
+  + **Get seller rating:**: provide seller_id
+  + **Create an account:(buyers)**: provide buyer_name, number_of_item_purchased, password
+  + **Get buyer history**: provide buyer_id
+  
+  
+
 + ### Database tables
 current tables
 

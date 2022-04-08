@@ -2,6 +2,7 @@ package com.example.mysql_api.shoppingCart;
 
 import com.example.mysql_api.item.Items;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -16,14 +17,14 @@ public class shoppingCartController {
     @PostMapping("/add")
     public ResponseEntity add(@RequestBody ShoppingCart shoppingCart){
         shoppingCartService.saveItem(shoppingCart);
-        return ResponseEntity.ok().build();
+        return new ResponseEntity<>("success", HttpStatus.OK);
     }
     @PutMapping("/remove_shopping_cart/{item_id}/{buyer_id}/{quantity}")
     public ResponseEntity removeShoppingCart(@PathVariable int item_id,@PathVariable int buyer_id, @PathVariable int quantity){
         Items item =new Items();
         item.setItem_id(item_id);
         shoppingCartService.removeItemFromShoppingCart(item_id,buyer_id,quantity);
-        return ResponseEntity.ok().build();
+        return new ResponseEntity<>("success", HttpStatus.OK);
     }
     @PutMapping("/display/{buyer_id}")
     public ResponseEntity<List<ShoppingCart>> displayShoppingcart(@PathVariable int buyer_id){
@@ -34,7 +35,7 @@ public class shoppingCartController {
     @PutMapping("/clear/{buyer_id}")
     public ResponseEntity clearShoppingcart(@PathVariable int buyer_id){
         shoppingCartService.clearShoppingCart(buyer_id);
-        return ResponseEntity.ok().build();
+        return new ResponseEntity<>("success", HttpStatus.OK);
     }
     private void printItems(List<ShoppingCart> cartitems){
         for(ShoppingCart item:cartitems){

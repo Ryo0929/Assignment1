@@ -10,7 +10,7 @@ public class Buyers {
     private int buyer_id;
     private String buyer_name;
     private int number_of_item_purchased;
-    private String password;
+    private String buyer_password;
 
     public int getBuyer_id() {
         return buyer_id;
@@ -36,11 +36,11 @@ public class Buyers {
         this.number_of_item_purchased = number_of_item_purchased;
     }
 
-    public String getPassword() {
-        return password;
+    public String getBuyer_password() {
+        return buyer_password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setBuyer_password(String buyer_password) {
+        this.buyer_password = buyer_password;
     }
 }
