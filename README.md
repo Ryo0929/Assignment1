@@ -35,7 +35,7 @@ WeiTung Liao, Bofan Zheng
   + **Get seller rating:**: provide seller_id
   + **Create an account:(buyers)**: provide buyer_name, number_of_item_purchased, password
   + **Get buyer history**: provide buyer_id
-  
+
   
 
 + ### Database tables
@@ -90,3 +90,8 @@ shopping cart
 + ### SOAP Server ###
 
   + Reply xml response to indicate transaction status
+  
+    
+
+### System Design Part III 
+![](https://raw.githubusercontent.com/Ryo0929/Assignment1/release/assignment4/System_Architecture3.png)
