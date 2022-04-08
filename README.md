@@ -109,7 +109,7 @@ shopping cart
 + **Average response time for each client function when all replicas run normally (no failures).**
   + **Put an item for sale**  ms 	
   
-	+ **Change the sale price of an item**  ms
+  + **Change the sale price of an item**  ms
   
   + **Remove Item**  ms
   
