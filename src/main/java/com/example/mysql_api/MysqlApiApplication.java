@@ -1,5 +1,6 @@
 package com.example.mysql_api;
 
+import com.example.atomic.AtomicStarter;
 import com.example.client.Server;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -14,7 +15,8 @@ public class MysqlApiApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MysqlApiApplication.class, args);
-		//Server server = new Server(8000);
+//		Server server = new Server(8000);
+		AtomicStarter starter = new AtomicStarter();
 	}
 
 }
