@@ -7,6 +7,8 @@ option java_package = "com.example.mysqljdbc";
 
 service db_services{
   rpc saveItem(item) returns (Empty) {}
+  rpc getItem(item) returns (itemList) {}
+  rpc delItem(item) returns (Empty){}
 }
 message item{
   int32 item_id=1;
@@ -21,5 +23,8 @@ message item{
   string keyword4=10;
   string keyword5=11;
   int32 seller_id=12;
+}
+message itemList{
+  repeated item items=1;
 }
 message Empty{}
