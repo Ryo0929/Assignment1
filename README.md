@@ -222,4 +222,4 @@ shopping cart
   
   + **Get seller rating**  4512ms
 
-  + **Get buyer history**  402ms
+  + **Get buyer history**  5402ms
