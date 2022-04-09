@@ -106,6 +106,8 @@ shopping cart
 
 + ### Raft Protocol
   +  We migrate part of current database to RedisRaft cluster. All data relate to product will be store at a strongly-consistent cluster of redis server  using Raft consensus. 
+  +  Compare to traditional Redis deployments trade strong consistency guarantees for improved performance and greater availability. RedisRaft was created for those occasions where strong consistency is required.
+  +  A RedisRaft cluster will remain available (i.e., able to process reads and writes) as long as the majority of its nodes remains online and able to communicate with each other. If this is not the case, the cluster becomes unavailable.
   +  reference : https://github.com/RedisLabs/redisraft 
 
 #### Current State
@@ -116,79 +118,82 @@ shopping cart
   + The original api and all existing functions works well.
 
 + ### Raft Protocol
+  + For now, all product related data was moved to redis cluster, all data was stored at different nodes.
+  + we deploy redis server for each 5 server, all 5 server have a state of either leader or follwer(1 leader 4 follower)
+  + when a leader is down, the new election will happen, all the node will be a "candidate" state untill new leader is elected.
 
 ### RTT Test ###
 
 + **Average response time for each client function when all replicas run normally (no failures).**
-  + **Put an item for sale**  ms 	
+  + **Put an item for sale**  173ms 	
   
-  + **Change the sale price of an item**  ms
+  + **Change the sale price of an item**  204ms
   
-  + **Remove Item**  ms
+  + **Remove Item**  205ms
   
-  + **Display item by seller request**  ms
+  + **Display item by seller request**  365ms
 
   + **Create an account**  3742ms
   
-  + **ADD Item to shopping cart**  ms
+  + **ADD Item to shopping cart**  599ms
   
-  + **Remove Item from shopping cart**  ms
+  + **Remove Item from shopping cart**  405ms
 
-  + **Display shopping cart**  ms
+  + **Display shopping cart**  673ms
   
-  + **Clear shopping cart**  ms
+  + **Clear shopping cart**  205ms
   	
-  + **Search Item for sale**  ms
+  + **Search Item for sale**  754ms
   
   + **Get seller rating**  4529ms
 
   + **Get buyer history** 5323ms
   
 + **Average response time for each client function when one server-side sellers interface replica and one serverside buyers interface to which some of the clients are connected fail.**
-	+ **Put an item for sale**  ms 	
+	+ **Put an item for sale**  879ms 	
   
-	+ **Change the sale price of an item**  ms
+	+ **Change the sale price of an item**  794ms
   
-  + **Remove Item**  ms
+  + **Remove Item**  582ms
   
-  + **Display item by seller request**  ms
+  + **Display item by seller request**  1037ms
 
   + **Create an account**  7230ms
   
-  + **ADD Item to shopping cart**  ms
+  + **ADD Item to shopping cart**  573ms
   
-  + **Remove Item from shopping cart**  ms
+  + **Remove Item from shopping cart**  465ms
 
-  + **Display shopping cart**  ms
+  + **Display shopping cart**  700ms
   
-  + **Clear shopping cart**  ms
+  + **Clear shopping cart**  402ms
   	
-  + **Search Item for sale**  ms
+  + **Search Item for sale**  1038ms
   
   + **Get seller rating**  7905ms
 
   + **Get buyer history**  9124ms
   
 + **Average response time for each client function when one product database replica (not the leader) fails.**
-	+ **Put an item for sale**  ms 	
+	+ **Put an item for sale**  205ms 	
   
-	+ **Change the sale price of an item**  ms
+	+ **Change the sale price of an item**  276ms
   
-  + **Remove Item**  ms
+  + **Remove Item**  593ms
   
-  + **Display item by seller request**  ms
+  + **Display item by seller request**  483ms
 
   + **Create an account**  3805ms
   
-  + **ADD Item to shopping cart**  ms
+  + **ADD Item to shopping cart**  292ms
   
-  + **Remove Item from shopping cart**  ms
+  + **Remove Item from shopping cart**  106ms
 
-  + **Display shopping cart**  ms
+  + **Display shopping cart**  204ms
   
-  + **Clear shopping cart**  ms
+  + **Clear shopping cart**  266ms
   	
-  + **Search Item for sale**  ms
+  + **Search Item for sale**  296ms
   
   + **Get seller rating**  4699ms
 
@@ -199,22 +204,22 @@ shopping cart
   
 	+ **Change the sale price of an item**  ms
   
-  + **Remove Item**  ms
+  + **Remove Item**  145ms
   
-  + **Display item by seller request**  ms
+  + **Display item by seller request**  296ms
 
   + **Create an account**  3601ms
   
-  + **ADD Item to shopping cart**  ms
+  + **ADD Item to shopping cart**  306ms
   
-  + **Remove Item from shopping cart**  ms
+  + **Remove Item from shopping cart** 286 ms
 
-  + **Display shopping cart**  ms
+  + **Display shopping cart**  178ms
   
-  + **Clear shopping cart**  ms
+  + **Clear shopping cart**  206ms
   	
-  + **Search Item for sale**  ms
+  + **Search Item for sale**  406ms
   
   + **Get seller rating**  4512ms
 
-  + **Get buyer history**  ms
+  + **Get buyer history**  402ms
