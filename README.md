@@ -96,14 +96,26 @@ shopping cart
 ### System Design Part III (change in Assignment 4)
 ![](https://raw.githubusercontent.com/Ryo0929/Assignment1/release/assignment4/System_Architecture3.png)
 
+#### Assumption
 + ### Rotating Sequencer Atomic Broadcast Protocol
 
   + Atomic controller is responsible for message sending, deliver status judge
+  + The rest gateway still received request direct from client, but for the request related to customer database, it will be redirected to Atomic system
+  + The atomic sytem begin "message send and deliver" logic after receiving redirected request from gateway, only after current deliver the messgae, the original business logic (eg. get buyer history) will then continue.
+  + reference: https://github.com/dangeabunea/RomanianCoderExamples/tree/master/UdpUnicastSimple
 
 + ### Raft Protocol
   +  We migrate part of current database to RedisRaft cluster. All data relate to product will be store at a strongly-consistent cluster of redis server  using Raft consensus. 
   +  reference : https://github.com/RedisLabs/redisraft 
 
+#### Current State
++ ### Rotating Sequencer Atomic Broadcast Protocol
+
+  + The original project inherited from assignment 2 and new atomic protocol sytem have been duplicated to 5 servers on the cloud. 
+  + The rotating Sequencer Atomic Broadcast Protocol work in production environment.
+  + The original api and all existing functions works well.
+
++ ### Raft Protocol
 
 ### RTT Test ###
 
@@ -116,7 +128,7 @@ shopping cart
   
   + **Display item by seller request**  ms
 
-  + **Create an account**  ms
+  + **Create an account**  3742ms
   
   + **ADD Item to shopping cart**  ms
   
@@ -128,9 +140,9 @@ shopping cart
   	
   + **Search Item for sale**  ms
   
-  + **Get seller rating**  ms
+  + **Get seller rating**  4529ms
 
-  + **Get buyer history**  ms
+  + **Get buyer history** 5323ms
   
 + **Average response time for each client function when one server-side sellers interface replica and one serverside buyers interface to which some of the clients are connected fail.**
 	+ **Put an item for sale**  ms 	
@@ -141,7 +153,7 @@ shopping cart
   
   + **Display item by seller request**  ms
 
-  + **Create an account**  ms
+  + **Create an account**  7230ms
   
   + **ADD Item to shopping cart**  ms
   
@@ -153,9 +165,9 @@ shopping cart
   	
   + **Search Item for sale**  ms
   
-  + **Get seller rating**  ms
+  + **Get seller rating**  7905ms
 
-  + **Get buyer history**  ms
+  + **Get buyer history**  9124ms
   
 + **Average response time for each client function when one product database replica (not the leader) fails.**
 	+ **Put an item for sale**  ms 	
@@ -166,7 +178,7 @@ shopping cart
   
   + **Display item by seller request**  ms
 
-  + **Create an account**  ms
+  + **Create an account**  3805ms
   
   + **ADD Item to shopping cart**  ms
   
@@ -178,9 +190,9 @@ shopping cart
   	
   + **Search Item for sale**  ms
   
-  + **Get seller rating**  ms
+  + **Get seller rating**  4699ms
 
-  + **Get buyer history**  ms
+  + **Get buyer history**  8832ms
   
 + **Average response time for each client function when the product database replica acting as leader fails.**
 	+ **Put an item for sale**  ms 	
@@ -191,7 +203,7 @@ shopping cart
   
   + **Display item by seller request**  ms
 
-  + **Create an account**  ms
+  + **Create an account**  3601ms
   
   + **ADD Item to shopping cart**  ms
   
@@ -203,6 +215,6 @@ shopping cart
   	
   + **Search Item for sale**  ms
   
-  + **Get seller rating**  ms
+  + **Get seller rating**  4512ms
 
   + **Get buyer history**  ms
