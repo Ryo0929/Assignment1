@@ -16,7 +16,7 @@ public class MysqlApiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MysqlApiApplication.class, args);
 //		Server server = new Server(8000);
-//		AtomicStarter starter = new AtomicStarter();
+		AtomicStarter starter = new AtomicStarter();
 	}
 
 }
