@@ -149,7 +149,7 @@ public class UdpUnicastClient implements Runnable {
     }
 
     private void notifyReceived(int currentGlobalSeqReceived) {
-        SentPacket packet = new SentPacket(3, "Notify Received Global Seq" + currentGlobalSeqReceived, -1, currentGlobalSeqReceived, null, -1);
+        SentPacket packet = new SentPacket(3, "Notify Received Global Seq" + currentGlobalSeqReceived, -1, currentGlobalSeqReceived, null, -1, -1);
         sendServer.broadcast(packet);
     }
 
@@ -223,7 +223,7 @@ public class UdpUnicastClient implements Runnable {
 
         // Send a sequence message if all previous conditions satisfied
 //        currentGlobalSeqReceived++;
-        SentPacket seq = new SentPacket(1, null, rec.getLocalSeq(), currentGlobalSeqReceived + 1, rec.getRestContent(), rec.getRestTag());
+        SentPacket seq = new SentPacket(1, null, rec.getLocalSeq(), currentGlobalSeqReceived + 1, rec.getRestContent(), rec.getRestTag(), rec.getSentNodeNum());
         sendServer.broadcast(seq);
 
     }

@@ -1,6 +1,7 @@
 package com.example.mysql_api.seller;
 
 
+import com.example.atomic.AddressConfig;
 import com.example.atomic.SentPacket;
 import com.example.atomic.UdpUnicastServer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class SellerController {
     }
     @GetMapping("/get_rating/{seller_id}")
     public ResponseEntity add(@PathVariable int seller_id){
-        SentPacket packet = new SentPacket(0, " ", SentPacket.getCurLocalSeq(), -1, seller_id, 1);
+        SentPacket packet = new SentPacket(0, " ", SentPacket.getCurLocalSeq(), -1, seller_id, 1, AddressConfig.CURRENT_NODE_NUM);
         udpUnicastServer.broadcast(packet);
 //        return ResponseEntity.ok(sellerService.getSellerRatingById(seller_id));
         return ResponseEntity.ok("success");

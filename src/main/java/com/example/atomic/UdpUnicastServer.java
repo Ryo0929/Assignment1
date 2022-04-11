@@ -29,7 +29,7 @@ public class UdpUnicastServer implements Runnable {
             try (DatagramSocket serverSocket = new DatagramSocket(50000)) {
 
                     // encoding send packet
-                    SentPacket packet = new SentPacket(2, "Node Ready", SentPacket.getCurLocalSeq(), -1, null, -1);
+                    SentPacket packet = new SentPacket(2, "Node Ready", SentPacket.getCurLocalSeq(), -1, null, -1, -1);
 
                     final ByteArrayOutputStream baos = new ByteArrayOutputStream(6400);
                     final ObjectOutputStream oos = new ObjectOutputStream(baos);

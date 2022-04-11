@@ -39,6 +39,9 @@ public class SentPacket implements Serializable {
     // rest Header(content) for processing request
     private Object restContent;
 
+    // original Node sent request Message
+    private int reqSentNodeNum;
+
     // rest tag to determine which request it stands for
     // -1 : not applicable
     // 1 : get Seller rating
@@ -48,13 +51,14 @@ public class SentPacket implements Serializable {
 
     private boolean delivered = false;
 
-    public SentPacket(int tag, String message, int lseq, int globalSeqNum, Object restContent, int restTag) {
+    public SentPacket(int tag, String message, int lseq, int globalSeqNum, Object restContent, int restTag, int rsn) {
         this.tag = tag;
         this.message = message;
         this.localSeq = lseq;
         this.globalSeqNum = globalSeqNum;
         this.restContent = restContent;
         this.restTag = restTag;
+        this.reqSentNodeNum = rsn;
     }
 
     public static int getCurLocalSeq() {
