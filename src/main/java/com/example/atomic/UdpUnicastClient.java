@@ -123,6 +123,14 @@ public class UdpUnicastClient implements Runnable {
                     deliveryProcess(receivedPacket);
                 }
 
+                // For retransmit message
+                if (tag == 4) {
+                    SentPacket m = searchMessageFromBuffer(receivedPacket);
+                    if (m != null) {
+                        sendServer.broadcast(m);
+                    }
+                }
+
             }
         } catch (SocketException e) {
             e.printStackTrace();
@@ -133,6 +141,16 @@ public class UdpUnicastClient implements Runnable {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    private SentPacket searchMessageFromBuffer(SentPacket target) {
+        for (SentPacket packet : messageBuffer) {
+            if (packet.getGlobalSeqNum() == target.getGlobalSeqNum()
+                )  {
+                sendServer.broadcast(packet);
+            }
+        }
+        return null;
     }
 
     // search buffer for previous message
@@ -158,12 +176,13 @@ public class UdpUnicastClient implements Runnable {
         // 1. Only deliver request message with seq s if already received seq number is less than s
         if (receivedPacket.getGlobalSeqNum() != this.currentGlobalSeqReceived) {
             return;
-        } else {
+        } else if (receivedPacket.getGlobalSeqNum() > this.currentGlobalSeqReceived){
+            SentPacket retransmit = new SentPacket(4,
+                    "Requset to retransmit Message with global seq number: " + receivedPacket.getGlobalSeqNum(),
+                    -1, this.currentGlobalSeqReceived + 1, null, -1, AddressConfig.CURRENT_NODE_NUM);
+            sendServer.broadcast(retransmit);
             // Sent retransmit message if message not found
-//            sendServer.
         }
-
-        // TODO check previous message delivery
 
         // 2. Judge whether majority condition is satisfied
         int satisfyNum = 0;

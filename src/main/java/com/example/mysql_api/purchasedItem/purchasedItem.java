@@ -44,4 +44,14 @@ public class purchasedItem {
     public void setFeedback(Integer feedback) {
         this.feedback = feedback;
     }
+
+    @Override
+    public String toString() {
+        return "purchasedItem{" +
+                "id=" + id +
+                ", buyer_id=" + buyer_id +
+                ", item_id=" + item_id +
+                ", feedback=" + feedback +
+                '}';
+    }
 }

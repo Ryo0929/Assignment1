@@ -17,6 +17,7 @@ public class SentPacket implements Serializable {
     // 1 : sequence Message
     // 2 : greeting Message
     // 3 : notify received seq
+    // 4 : retransmit Message
     int tag;
 
     private String message;
