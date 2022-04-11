@@ -34,8 +34,6 @@ public class UdpUnicastServer implements Runnable {
 //            }
             try (DatagramSocket serverSocket = new DatagramSocket(50000)) {
                 // The server will generate 3 messages and send them to the client
-                for (int i = 0; i < 3; i++) {
-//                    String message = "Message number " + i;
 
                     // encoding send packet
                     SentPacket packet = new SentPacket(2, "Node Ready", SentPacket.getCurLocalSeq(), -1, null, -1);
@@ -53,7 +51,6 @@ public class UdpUnicastServer implements Runnable {
                             AddressConfig.CLIENT_LISTEN_PORT
                     );
                     serverSocket.send(datagramPacket);
-                }
             } catch (SocketException e) {
                 e.printStackTrace();
             } catch (UnknownHostException e) {

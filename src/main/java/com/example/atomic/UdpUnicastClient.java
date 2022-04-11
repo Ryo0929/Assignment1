@@ -34,7 +34,7 @@ public class UdpUnicastClient implements Runnable {
         {
             try {
                 this.address = InetAddress.getByName(add);
-                this.outputPacket = new OutputPacket(address.toString(), port);
+                this.outputPacket = new OutputPacket(AddressConfig.CURRENT_NODE_NUM, address.toString(), port);
                 this.sendServer = sendServer;
                 this.nodeNum = num;
             } catch (UnknownHostException e) {
@@ -94,9 +94,10 @@ public class UdpUnicastClient implements Runnable {
                 System.out.print("Port: " + outputPacket.port + ", ");
                 System.out.print("Original Node[" + receivedPacket.getSentNodeNum());
                 System.out.print("] IP: " + receivedPacket.getSentIp() + ", ");
+                System.out.print("tag: " + receivedPacket.getTag() + ", ");
 
                 if (tag == 0 || tag == 1) {
-                    System.out.println("<sid, seq#>:    <"
+                    System.out.println("<sid, seq#> : <"
                             + receivedPacket.getSentNodeNum()
                             + ", " + receivedPacket.getLocalSeq() + ">" +
                             ", ");
@@ -114,6 +115,8 @@ public class UdpUnicastClient implements Runnable {
                 if (tag == 3) {
                     // update group received table
                     this.groupGlobalSeqReceived[receivedPacket.getSentNodeNum()] = receivedPacket.getGlobalSeqNum();
+                    System.out.println("Group Received Table");
+                    System.out.println(groupGlobalSeqReceived.toString());
                 }
 
                 // For received request message, judge whether we need to send a sequence message

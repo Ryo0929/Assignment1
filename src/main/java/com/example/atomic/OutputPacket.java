@@ -14,7 +14,8 @@ public class OutputPacket<T> {
     public int port;
     public T content;
 
-    public OutputPacket(String ip, int port) {
+    public OutputPacket(int num, String ip, int port) {
+        this.nodeNum = num;
         this.ip = ip;
         this.port = port;
     }
