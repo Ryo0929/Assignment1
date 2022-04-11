@@ -118,16 +118,18 @@ public class UdpUnicastClient implements Runnable {
                     updateGlobalSequence(receivedPacket);
                     // Notify other nodes for already received message
                     notifyReceived(this.currentGlobalSeqReceived);
+                    Thread.sleep(5000);
                     deliveryProcess(receivedPacket);
                 }
 
-//                sendServer.broadcast();
             }
         } catch (SocketException e) {
             e.printStackTrace();
         } catch (IOException e) {
             System.out.println("Timeout. Client is closing.");
         } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }

@@ -17,6 +17,6 @@ public class AddressConfig {
     public static int CURRENT_NODE_NUM = 0;
     public static String CURRENT_NODE_ADDRESS = "10.0.0.178";
     public static int CLIENT_LISTEN_PORT = 50001;
-    public static int TOTAL_NODE_NUM = 5;
+    public static int TOTAL_NODE_NUM = 2;
 
 }
