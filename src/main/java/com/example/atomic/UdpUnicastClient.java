@@ -49,17 +49,8 @@ public class UdpUnicastClient implements Runnable {
         Arrays.fill(groupGlobalSeqReceived, -1);
 
         handler = (MessageRequestHandler) SpringUtil.getBean(MessageRequestHandler.class);
-        /**
-         * Bind the client socket to the port on which you expect to
-         * read incoming messages
-         */
+
         try (DatagramSocket clientSocket = new DatagramSocket(port, address)) {
-            /**
-             * Create a byte array buffer to store incoming data. If the message length
-             * exceeds the length of your buffer, then the message will be truncated. To avoid this,
-             * you can simply instantiate the buffer with the maximum UDP packet size, which
-             * is 65506
-             */
 
             byte[] buffer = new byte[65507];
 
@@ -67,10 +58,6 @@ public class UdpUnicastClient implements Runnable {
 
                 DatagramPacket datagramPacket = new DatagramPacket(buffer, 0, buffer.length);
 
-                /**
-                 * The receive method will wait for 3000 ms for data.
-                 * After that, the client will throw a timeout exception.
-                 */
                 clientSocket.receive(datagramPacket);
                 byte[] datas = datagramPacket.getData();
 
@@ -89,7 +76,7 @@ public class UdpUnicastClient implements Runnable {
                 outputPacket.setContent(receivedPacket.getMessage());
 
                 // print essential details
-                System.out.print("Node[" + outputPacket.getNodeNum());
+                System.out.print("Current Node[" + outputPacket.getNodeNum());
                 System.out.print("] IP: " + outputPacket.ip + ", ");
                 System.out.print("Port: " + outputPacket.port + ", ");
                 System.out.print("Original Node[" + receivedPacket.getSentNodeNum());
@@ -209,7 +196,7 @@ public class UdpUnicastClient implements Runnable {
         }
 
         // Send a sequence message if all previous conditions satisfied
-        SentPacket seq = new SentPacket(2, null, rec.getLocalSeq(), currentGlobalSeqReceived + 1, rec.getRestContent(), rec.getRestTag());
+        SentPacket seq = new SentPacket(1, null, rec.getLocalSeq(), currentGlobalSeqReceived + 1, rec.getRestContent(), rec.getRestTag());
         sendServer.broadcast(seq);
 
     }
