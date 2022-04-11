@@ -193,7 +193,7 @@ public class UdpUnicastClient implements Runnable {
     private void updateGlobalSequence(SentPacket receivedPacket) {
         for (SentPacket packet : messageBuffer) {
             if (packet.getTag() == 0 && packet.getLocalSeq() == receivedPacket.getLocalSeq()
-                    && packet.getSentNodeNum() == receivedPacket.getSentNodeNum()
+                    && packet.getReqSentNodeNum() == receivedPacket.getReqSentNodeNum()
             ) {
                 packet.setGlobalSeqNum(receivedPacket.getGlobalSeqNum());
             }
