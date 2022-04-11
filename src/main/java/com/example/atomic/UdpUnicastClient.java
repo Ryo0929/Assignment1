@@ -124,7 +124,7 @@ public class UdpUnicastClient implements Runnable {
 
                 // For received sequence message
                 if (tag == 1) {
-                    // update corresponding request message Global sequence in buffer
+                    // update corresponding request message global sequence in buffer
                     updateGlobalSequence(receivedPacket);
                     // Notify other nodes for already received message
                     notifyReceived(this.currentGlobalSeqReceived);
@@ -152,7 +152,11 @@ public class UdpUnicastClient implements Runnable {
         // 1. Only deliver request message with seq s if already received seq number is less than s
         if (receivedPacket.getGlobalSeqNum() != this.currentGlobalSeqReceived) {
             return;
+        } else {
+            // Sent retransmit message if message not found
+//            sendServer.
         }
+
         // TODO check previous message delivery
 
         // 2. Judge whether majority condition is satisfied
