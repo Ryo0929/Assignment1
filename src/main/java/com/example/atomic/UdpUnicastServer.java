@@ -24,16 +24,9 @@ public class UdpUnicastServer implements Runnable {
     @SneakyThrows
     @Override
     public void run() {
-        /**
-         * Create a new server socket and bind it to a free port. I have chosen
-         * one in the 49152 - 65535 range, which are allocated for internal applications
-         */
-//        for (String address : AddressConfig.ADDRESS_POOL) {
-//            if (port == 50001) {
-//                continue;
-//            }
+        // Greeting
+        for (String address : AddressConfig.ADDRESS_POOL) {
             try (DatagramSocket serverSocket = new DatagramSocket(50000)) {
-                // The server will generate 3 messages and send them to the client
 
                     // encoding send packet
                     SentPacket packet = new SentPacket(2, "Node Ready", SentPacket.getCurLocalSeq(), -1, null, -1);
@@ -50,7 +43,7 @@ public class UdpUnicastServer implements Runnable {
                             InetAddress.getByName(AddressConfig.CURRENT_NODE_ADDRESS),
                             AddressConfig.CLIENT_LISTEN_PORT
                     );
-                    serverSocket.send(datagramPacket);
+                serverSocket.send(datagramPacket);
             } catch (SocketException e) {
                 e.printStackTrace();
             } catch (UnknownHostException e) {
@@ -59,7 +52,7 @@ public class UdpUnicastServer implements Runnable {
                 e.printStackTrace();
             }
             Thread.sleep(5000);
-//        }
+        }
     }
 
     @SneakyThrows
