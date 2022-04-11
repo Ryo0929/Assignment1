@@ -183,6 +183,7 @@ public class UdpUnicastClient implements Runnable {
                     + ", " + receivedPacket.getLocalSeq() + ">" +
                     " ");
             System.out.println("delivered!");
+            receivedPacket.setDelivered(true);
 
             handler.redirect(receivedPacket);
         }
