@@ -98,7 +98,7 @@ public class UdpUnicastClient implements Runnable {
 
                 System.out.println("Message: " + outputPacket.content + ", ");
 
-                // For received notify seq message
+                // For received notify message[seq]
                 if (tag == 3) {
                     // update group received table
                     this.groupGlobalSeqReceived[receivedPacket.getSentNodeNum()] = receivedPacket.getGlobalSeqNum();
@@ -206,6 +206,7 @@ public class UdpUnicastClient implements Runnable {
         }
 
         // Send a sequence message if all previous conditions satisfied
+//        currentGlobalSeqReceived++;
         SentPacket seq = new SentPacket(1, null, rec.getLocalSeq(), currentGlobalSeqReceived + 1, rec.getRestContent(), rec.getRestTag());
         sendServer.broadcast(seq);
 

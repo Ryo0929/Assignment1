@@ -30,7 +30,6 @@ public class UdpUnicastServer implements Runnable {
 
                     // encoding send packet
                     SentPacket packet = new SentPacket(2, "Node Ready", SentPacket.getCurLocalSeq(), -1, null, -1);
-                    SentPacket.incLocalSeq();
 
                     final ByteArrayOutputStream baos = new ByteArrayOutputStream(6400);
                     final ObjectOutputStream oos = new ObjectOutputStream(baos);
@@ -60,6 +59,11 @@ public class UdpUnicastServer implements Runnable {
         for (String address : AddressConfig.ADDRESS_POOL) {
             try (DatagramSocket serverSocket = new DatagramSocket(50000)) {
                 // The server will generate 3 messages and send them to the client
+
+                // increment local sequence number
+                    if (packet.getTag() == 1) {
+                        SentPacket.incCurLocalSeq();
+                    }
 
                     // encoding send packet
                     final ByteArrayOutputStream baos = new ByteArrayOutputStream(6400);

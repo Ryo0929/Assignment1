@@ -59,7 +59,7 @@ public class SentPacket implements Serializable {
         return curLocalSeq;
     }
 
-    public static void incLocalSeq() {
+    public static void incCurLocalSeq() {
         curLocalSeq++;
     }
 }
