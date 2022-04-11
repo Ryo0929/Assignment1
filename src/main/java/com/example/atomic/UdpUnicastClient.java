@@ -175,7 +175,6 @@ public class UdpUnicastClient implements Runnable {
 
         if (satisfyNum > AddressConfig.TOTAL_NODE_NUM / 2) {
             // deliver message
-            handler.redirect(receivedPacket);
 
             System.out.print("Original Node[" + receivedPacket.getSentNodeNum());
             System.out.print("] IP: " + receivedPacket.getSentIp() + ", ");
@@ -184,6 +183,8 @@ public class UdpUnicastClient implements Runnable {
                     + ", " + receivedPacket.getLocalSeq() + ">" +
                     " ");
             System.out.println("delivered!");
+
+            handler.redirect(receivedPacket);
         }
 
     }

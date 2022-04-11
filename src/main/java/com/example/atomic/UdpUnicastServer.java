@@ -56,14 +56,13 @@ public class UdpUnicastServer implements Runnable {
 
     @SneakyThrows
     public void broadcast(SentPacket packet) {
+        // increment local sequence number
+        if (packet.getTag() == 0) {
+            SentPacket.incCurLocalSeq();
+        }
+
         for (String address : AddressConfig.ADDRESS_POOL) {
             try (DatagramSocket serverSocket = new DatagramSocket(50000)) {
-                // The server will generate 3 messages and send them to the client
-
-                // increment local sequence number
-                    if (packet.getTag() == 1) {
-                        SentPacket.incCurLocalSeq();
-                    }
 
                     // encoding send packet
                     final ByteArrayOutputStream baos = new ByteArrayOutputStream(6400);
@@ -88,7 +87,7 @@ public class UdpUnicastServer implements Runnable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Thread.sleep(5000);
+//            Thread.sleep(5000);
         }
 
     }
