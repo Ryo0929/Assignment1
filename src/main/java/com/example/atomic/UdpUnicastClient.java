@@ -149,7 +149,7 @@ public class UdpUnicastClient implements Runnable {
     }
 
     private void notifyReceived(int currentGlobalSeqReceived) {
-        SentPacket packet = new SentPacket(3, "Notify Received Global Seq" + currentGlobalSeqReceived, -1, currentGlobalSeqReceived, null, -1, -1);
+        SentPacket packet = new SentPacket(3, "Notify Received Global Seq Number: " + currentGlobalSeqReceived, -1, currentGlobalSeqReceived, null, -1, -1);
         sendServer.broadcast(packet);
     }
 
