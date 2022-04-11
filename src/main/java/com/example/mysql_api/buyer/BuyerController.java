@@ -36,7 +36,7 @@ public class BuyerController {
     }
     @GetMapping(path="/list_item_by_buyerer_id/{buyer_id}")
     public ResponseEntity getAllPurchasedItem(@PathVariable Integer buyer_id){
-        SentPacket packet = new SentPacket(0, " ", SentPacket.getCurLocalSeq(), -1, buyer_id, 2, AddressConfig.CURRENT_NODE_NUM);
+        SentPacket packet = new SentPacket(0, " ", SentPacket.getCurLocalSeq(), -1, buyer_id, 3, AddressConfig.CURRENT_NODE_NUM);
         udpUnicastServer.broadcast(packet);
 //        List<purchasedItem> res=purchasedItemService.listByBuyerId(buyer_id);
 //        return ResponseEntity.ok(res);
