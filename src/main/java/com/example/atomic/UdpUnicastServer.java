@@ -1,7 +1,6 @@
 package com.example.atomic;
 
 import lombok.SneakyThrows;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +38,9 @@ public class UdpUnicastServer implements Runnable {
 //                    String message = "Message number " + i;
 
                     // encoding send packet
-                    SentPacket packet = new SentPacket(2, "Node Ready", -1, null, -1);
+                    SentPacket packet = new SentPacket(2, "Node Ready", SentPacket.getCurLocalSeq(), -1, null, -1);
+                    SentPacket.incLocalSeq();
+
                     final ByteArrayOutputStream baos = new ByteArrayOutputStream(6400);
                     final ObjectOutputStream oos = new ObjectOutputStream(baos);
                     oos.writeObject(packet);

@@ -16,6 +16,7 @@ public class SentPacket implements Serializable {
     // 0 : request Message
     // 1 : sequence Message
     // 2 : greeting Message
+    // 3 : notify received seq
     int tag;
 
     private String message;
@@ -28,7 +29,9 @@ public class SentPacket implements Serializable {
     private int sentNodeNum = AddressConfig.CURRENT_NODE_NUM;
 
     // local sequence num, initialized
-    private static int localSeq = 0;
+    private static int curLocalSeq = 0;
+
+    private int localSeq;
 
     // default -1 for not set
     private int globalSeqNum = -1;
@@ -39,21 +42,24 @@ public class SentPacket implements Serializable {
     // rest tag to determine which request it stands for
     // -1 : not applicable
     // 1 : get Seller rating
+    // 2 : create account
+    // 3 : get Buyer history
     private int restTag;
 
-    public SentPacket(int tag, String message, int globalSeqNum, Object restContent, int restTag) {
+    public SentPacket(int tag, String message, int lseq, int globalSeqNum, Object restContent, int restTag) {
         this.tag = tag;
         this.message = message;
+        this.localSeq = lseq;
         this.globalSeqNum = globalSeqNum;
         this.restContent = restContent;
         this.restTag = restTag;
     }
 
-    public static int getLocalSeq() {
-        return localSeq;
+    public static int getCurLocalSeq() {
+        return curLocalSeq;
     }
 
-    public void incLocalSeq() {
-        localSeq++;
+    public static void incLocalSeq() {
+        curLocalSeq++;
     }
 }

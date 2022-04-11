@@ -12,5 +12,6 @@ public class BuyerService {
     private BuyerRepository buyerRepository;
     public void saveBuyer(Buyers buyers){
         buyerRepository.save(buyers);
+        System.out.println("Buyer: " + buyers.getBuyer_name() + " saved.");
     }
 }
