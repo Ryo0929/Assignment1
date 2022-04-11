@@ -40,7 +40,7 @@ public class UdpUnicastServer implements Runnable {
                     DatagramPacket datagramPacket = new DatagramPacket(
                             message,
                             message.length,
-                            InetAddress.getByName(AddressConfig.CURRENT_NODE_ADDRESS),
+                            InetAddress.getByName(address),
                             AddressConfig.CLIENT_LISTEN_PORT
                     );
                 serverSocket.send(datagramPacket);
@@ -57,10 +57,6 @@ public class UdpUnicastServer implements Runnable {
 
     @SneakyThrows
     public void broadcast(SentPacket packet) {
-        /**
-         * Create a new server socket and bind it to a free port. I have chosen
-         * one in the 49152 - 65535 range, which are allocated for internal applications
-         */
         for (String address : AddressConfig.ADDRESS_POOL) {
             try (DatagramSocket serverSocket = new DatagramSocket(50000)) {
                 // The server will generate 3 messages and send them to the client
