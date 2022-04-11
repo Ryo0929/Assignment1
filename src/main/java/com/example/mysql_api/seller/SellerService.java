@@ -26,5 +26,9 @@ public class SellerService {
         sellerRepository.deleteById(id);
     }
 
-    public int getSellerRatingById(Integer id){return getSeller(id).getSeller_feedback();}
+    public int getSellerRatingById(Integer id) {
+        int seller_feedback = getSeller(id).getSeller_feedback();
+        System.out.println("Request Seller Id: " + id + ", feedback: " + seller_feedback);
+        return seller_feedback;
+    }
 }
