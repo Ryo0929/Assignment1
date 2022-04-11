@@ -176,7 +176,7 @@ public class UdpUnicastClient implements Runnable {
         if (satisfyNum > AddressConfig.TOTAL_NODE_NUM / 2) {
             // deliver message
 
-            System.out.print("Original Node[" + receivedPacket.getSentNodeNum());
+            System.out.print("Original Message from Node[" + receivedPacket.getSentNodeNum());
             System.out.print("] IP: " + receivedPacket.getSentIp() + ", ");
             System.out.println("<sid, seq#> : <"
                     + receivedPacket.getSentNodeNum()
