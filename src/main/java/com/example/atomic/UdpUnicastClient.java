@@ -104,6 +104,7 @@ public class UdpUnicastClient implements Runnable {
                     this.groupGlobalSeqReceived[receivedPacket.getSentNodeNum()] = receivedPacket.getGlobalSeqNum();
                     System.out.println("Group Received Table Update");
                     System.out.println(Arrays.toString(groupGlobalSeqReceived));
+                    checkPreviousSeqMessage();
                 }
 
                 // For received request message, judge whether we need to send a sequence message
@@ -132,6 +133,19 @@ public class UdpUnicastClient implements Runnable {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    // search buffer for previous message
+    private void checkPreviousSeqMessage() {
+        for (SentPacket packet : messageBuffer) {
+            if ( packet.getTag() == 0 &&
+                    packet.getGlobalSeqNum() != -1 &&
+                    packet.getGlobalSeqNum() <= currentGlobalSeqReceived &&
+                    !packet.isDelivered()) {
+                deliveryProcess(packet);
+            }
+        }
+
     }
 
     private void notifyReceived(int currentGlobalSeqReceived) {

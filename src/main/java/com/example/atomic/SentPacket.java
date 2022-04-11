@@ -46,6 +46,8 @@ public class SentPacket implements Serializable {
     // 3 : get Buyer history
     private int restTag;
 
+    private boolean delivered = false;
+
     public SentPacket(int tag, String message, int lseq, int globalSeqNum, Object restContent, int restTag) {
         this.tag = tag;
         this.message = message;
