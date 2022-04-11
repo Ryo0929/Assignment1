@@ -102,8 +102,8 @@ public class UdpUnicastClient implements Runnable {
                 if (tag == 3) {
                     // update group received table
                     this.groupGlobalSeqReceived[receivedPacket.getSentNodeNum()] = receivedPacket.getGlobalSeqNum();
-                    System.out.println("Group Received Table");
-                    System.out.println(groupGlobalSeqReceived.toString());
+                    System.out.println("Group Received Table Update");
+                    System.out.println(Arrays.toString(groupGlobalSeqReceived));
                 }
 
                 // For received request message, judge whether we need to send a sequence message
@@ -160,6 +160,14 @@ public class UdpUnicastClient implements Runnable {
         if (satisfyNum > AddressConfig.TOTAL_NODE_NUM / 2) {
             // deliver message
             handler.redirect(receivedPacket);
+
+            System.out.print("Original Node[" + receivedPacket.getSentNodeNum());
+            System.out.print("] IP: " + receivedPacket.getSentIp() + ", ");
+            System.out.println("<sid, seq#> : <"
+                    + receivedPacket.getSentNodeNum()
+                    + ", " + receivedPacket.getLocalSeq() + ">" +
+                    " ");
+            System.out.println("delivered!");
         }
 
     }
